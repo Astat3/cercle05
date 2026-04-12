@@ -6,17 +6,17 @@
 /*   By: adamgallot <adamgallot@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/18 04:52:02 by adamgallot        #+#    #+#             */
-/*   Updated: 2026/03/18 04:58:42 by adamgallot       ###   ########.fr       */
+/*   Updated: 2026/03/18 05:09:33 by adamgallot       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm() : AForm("Default", false, 145, 137), _target("default_target")
+ShrubberyCreationForm::ShrubberyCreationForm() : AForm("Default", 145, 137), _target("default_target")
 {
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("ShrubberyCreationForm", false, 145, 137), _target(target)
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("ShrubberyCreationForm", 145, 137), _target(target)
 {
 }
 
@@ -49,15 +49,15 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 	if (file.is_open())
 	{
 		file << "      /\\      \n"
-			 << "     /\\*\\     \n"
-			 << "    /\\O\\*\\    \n"
-			 << "   /*/\\/\\/\\   \n"
-			 << "  /\\O\\/\\*\\/\\  \n"
-			 << " /\\*\\/\\*\\/\\/\\ \n"
-			 << "/\\O\\/\\/*/\\/O/\\\n"
-			 << "      ||      \n"
-			 << "      ||      \n"
-			 << "      ||      \n";
+			<< "     /\\*\\     \n"
+			<< "    /\\O\\*\\    \n"
+			<< "   /*/\\/\\/\\   \n"
+			<< "  /\\O\\/\\*\\/\\  \n"
+			<< " /\\*\\/\\*\\/\\/\\ \n"
+			<< "/\\O\\/\\/*/\\/O/\\\n"
+			<< "      ||      \n"
+			<< "      ||      \n"
+			<< "      ||      \n";
 		file.close();
 	}
 }

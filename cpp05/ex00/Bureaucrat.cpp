@@ -12,82 +12,82 @@
 
 #include "Bureaucrat.hpp"
 
-Bureaucrate::Bureaucrate() : _name("Default"), _grade(100)
+Bureaucrat::Bureaucrat() : _name("Default"), _grade(100)
 {
 	std::cout<<"Default Constr Called"<<std::endl;
 }
 
-Bureaucrate::Bureaucrate(const Bureaucrate &cpy): _name(cpy._name), _grade(cpy._grade){
+Bureaucrat::Bureaucrat(const Bureaucrat &cpy): _name(cpy._name), _grade(cpy._grade){
 	std::cout<<"Cpy constructor called "<<std::endl;
 }
 
-const std::string Bureaucrate::GetName(void)const{
+const std::string Bureaucrat::GetName(void)const{
 	return this->_name;
 }
 
-Bureaucrate &Bureaucrate::operator=(const Bureaucrate &rhs)
+Bureaucrat &Bureaucrat::operator=(const Bureaucrat &rhs)
 {
 	std::cout<<"Overload Operator Called"<<std::endl;
 	if (this != &rhs)
 		this->_grade = rhs.GetGrade();
 	return *this;
 }
-Bureaucrate::Bureaucrate(const std::string name, int grade): _name(name)
+Bureaucrat::Bureaucrat(const std::string name, int grade): _name(name)
 {
 	if (grade > 150)
-		throw GradeTooLowExcepetion();
+		throw GradeTooLowException();
 	if (grade < 1)
-		throw GradeTooHighExcepetion();
+		throw GradeTooHighException();
 	this->_grade = grade;	
 	std::cout << "Bureaucrat Constructor called for " << this->GetName() <<
 	" with grade of " << grade << std::endl;
 }
 
-Bureaucrate::~Bureaucrate()
+Bureaucrat::~Bureaucrat()
 {
 	std::cout<<"Default Deconstructor called "<<std::endl;
 }
-int Bureaucrate::GetGrade(void)const
+int Bureaucrat::GetGrade(void)const
 {
 	return this->_grade;
 }
 
 
-int Bureaucrate::SetGrade(int n)
+int Bureaucrat::SetGrade(int n)
 {
 	if (n >150)
-		throw GradeTooLowExcepetion();
+		throw GradeTooLowException();
 	else if (n< 1)
-		throw GradeTooHighExcepetion();
+		throw GradeTooHighException();
 	this->_grade = n;
 	std::cout<<"Grade is now: "<<this->_grade<<std::endl;
 	return this->_grade;
 }
-void Bureaucrate::increment()
+void Bureaucrat::increment()
 {
 	std::cout<<"Trying to increment"<<std::endl;
-	SetGrade(this->_grade  + 1);
-}
-void Bureaucrate::decrement()
-{
-	std::cout<<"Trying to decrement"<<std::endl;
 	SetGrade(this->_grade - 1);
 }
+void Bureaucrat::decrement()
+{
+	std::cout<<"Trying to decrement"<<std::endl;
+	SetGrade(this->_grade + 1);
+}
 
-const char *Bureaucrate::GradeTooHighExcepetion::what(void) const throw()
+const char *Bureaucrat::GradeTooHighException::what(void) const throw()
 {
 	return ("Grade too High");
 };
 
-const char *Bureaucrate::GradeTooLowExcepetion::what(void) const throw()
+const char *Bureaucrat::GradeTooLowException::what(void) const throw()
 {
 	return ("Grade too Low");
 };
 
 
 
-std::ostream	&operator<<(std::ostream &o, Bureaucrate *e)
+std::ostream	&operator<<(std::ostream &o, Bureaucrat const &e)
 {
-	o << "Bureaucrat " << e->GetName() << ":\n\tgrade: " << e->GetName() << std::endl;
+	o << e.GetName() << ", bureaucrat grade " << e.GetGrade() << ".";
 	return (o);
 }

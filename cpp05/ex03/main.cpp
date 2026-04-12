@@ -16,6 +16,7 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
 #include <cstdlib>
 #include <ctime>
 
@@ -23,61 +24,38 @@ int main()
 {
 	srand(time(NULL));
 
-	std::cout << "--- Testing ShrubberyCreationForm ---" << std::endl;
-	try
-	{
-		Bureaucrat high("HighRank", 1);
-		Bureaucrat low("LowRank", 150);
-		ShrubberyCreationForm shrub("home");
+	Intern someRandomIntern;
+	AForm* rrf;
+	AForm* scf;
+	AForm* ppf;
+	AForm* unknown;
 
-		std::cout << shrub;
-		low.executeForm(shrub); // fails: not signed
-		
-		high.signForm(shrub); // successes
-		std::cout << shrub;
+	std::cout << "\n--- Intern creating forms ---" << std::endl;
+	rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+	scf = someRandomIntern.makeForm("shrubbery creation", "home");
+	ppf = someRandomIntern.makeForm("presidential pardon", "Thief");
+	unknown = someRandomIntern.makeForm("unknown form", "target");
 
-		low.executeForm(shrub); // fails: grade too low
-		high.executeForm(shrub); // accesses file output
+	std::cout << "\n--- Bureaucrats interacting with forms ---" << std::endl;
+	Bureaucrat boss("Boss", 1);
+	
+	if (rrf) {
+		boss.signForm(*rrf);
+		boss.executeForm(*rrf);
+		delete rrf;
 	}
-	catch(const std::exception& e)
-	{
-		std::cerr << "Exception: " << e.what() << '\n';
+	if (scf) {
+		boss.signForm(*scf);
+		boss.executeForm(*scf);
+		delete scf;
 	}
-
-	std::cout << "\n--- Testing RobotomyRequestForm ---" << std::endl;
-	try
-	{
-		Bureaucrat mid("MidRank", 50);
-		RobotomyRequestForm robo("Bender");
-
-		std::cout << robo;
-		mid.signForm(robo); // succeeds (50 < 72)
-		mid.executeForm(robo); // fails (50 > 45)
-		
-		Bureaucrat high("HighRank", 1);
-		high.executeForm(robo); // succeeds
-		high.executeForm(robo); // might succeed or fail (50% chance)
-		high.executeForm(robo); // might succeed or fail
+	if (ppf) {
+		boss.signForm(*ppf);
+		boss.executeForm(*ppf);
+		delete ppf;
 	}
-	catch(const std::exception& e)
-	{
-		std::cerr << "Exception: " << e.what() << '\n';
-	}
-
-	std::cout << "\n--- Testing PresidentialPardonForm ---" << std::endl;
-	try
-	{
-		Bureaucrat superHigh("President", 1);
-		Bureaucrat peon("Peon", 150);
-		PresidentialPardonForm pardon("Thief");
-
-		peon.signForm(pardon); // fails
-		superHigh.signForm(pardon); // succeeds
-		superHigh.executeForm(pardon); // succeeds
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << "Exception: " << e.what() << '\n';
+	if (unknown) {
+		delete unknown; // Should be null anyway
 	}
 
 	return 0;

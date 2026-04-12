@@ -10,9 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUREAUCRATE_HPP
-#define BUREAUCRATE_HPP
-
+#ifndef BUREAUCRAT_HPP
+#define BUREAUCRAT_HPP
 
 #include <iostream>
 #include <string>
@@ -21,39 +20,36 @@
 
 class Form;
 
-class Bureaucrate
+class Bureaucrat
 {
 	private:
 		const std::string _name;
 		int _grade;
-        int SetGrade(int grade);
+		int SetGrade(int grade);
 	public: 
-	Bureaucrate();
-    Bureaucrate(const Bureaucrate &cpy);
-    Bureaucrate(const std::string, int grade);
-    Bureaucrate &operator=(const Bureaucrate &rhs);
-	~Bureaucrate();
-	void increment();
-	void decrement();
-	int GetGrade(void)const;
-    const std::string GetName(void)const;
-    void signForm( Form &a);
+		Bureaucrat();
+		Bureaucrat(const Bureaucrat &cpy);
+		Bureaucrat(const std::string name, int grade);
+		Bureaucrat &operator=(const Bureaucrat &rhs);
+		~Bureaucrat();
+		void increment();
+		void decrement();
+		int GetGrade(void)const;
+		const std::string GetName(void)const;
+		void signForm( Form &a);
 
-
-class GradeTooHighExcepetion : public std::exception
-{
-	public:
-		virtual const char *what() const throw();
+		class GradeTooHighException : public std::exception
+		{
+			public:
+				virtual const char *what() const throw();
+		};
+		class GradeTooLowException : public std::exception
+		{
+			public:
+				virtual const char *what() const throw();
+		};
 };
-class GradeTooLowExcepetion : public std::exception
-{
-	public:
-		virtual const char *what() const throw();
-};
-};
 
-std::ostream &operator<<(std::ostream&o, Bureaucrate *e);
-
-
+std::ostream &operator<<(std::ostream&o, Bureaucrat const &e);
 
 #endif

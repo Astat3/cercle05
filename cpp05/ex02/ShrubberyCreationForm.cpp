@@ -12,11 +12,11 @@
 
 #include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm() : AForm("Default", false, 145, 137), _target("default_target")
+ShrubberyCreationForm::ShrubberyCreationForm() : AForm("Default", 145, 137), _target("default_target")
 {
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("ShrubberyCreationForm", false, 145, 137), _target(target)
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("ShrubberyCreationForm", 145, 137), _target(target)
 {
 }
 

@@ -6,7 +6,7 @@
 /*   By: adamgallot <adamgallot@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/18 04:51:13 by adamgallot        #+#    #+#             */
-/*   Updated: 2026/03/18 04:51:15 by adamgallot       ###   ########.fr       */
+/*   Updated: 2026/04/12 14:15:00 by adamgallot       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 #include <iostream>
 #include <string>
 #include <exception>
-#include "AForm.hpp"
 
 class AForm;
 

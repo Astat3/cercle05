@@ -17,7 +17,6 @@
 #include <iostream>
 #include <string>
 #include <exception>
-#include "Bureaucrat.hpp"
 
 class Bureaucrat;
 
@@ -30,7 +29,7 @@ class AForm
 		const int _ExecGrade;
 	public:
 		AForm(void);
-		AForm(const std::string name, bool signe, const int signeGrade, const int ExecGrade);
+		AForm(const std::string name, const int signeGrade, const int ExecGrade);
 		AForm(const AForm &cpy);
 		AForm &operator=(const AForm &rhs);
 		virtual ~AForm();
@@ -54,13 +53,6 @@ class AForm
 			public:
 				virtual const char *what() const throw();
 		};
-
-		class SignedMustBeFalse : public std::exception
-		{
-			public:
-				virtual const char *what() const throw();
-		};
-
 		class NotSignedException : public std::exception
 		{
 			public:

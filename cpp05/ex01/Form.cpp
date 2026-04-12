@@ -12,21 +12,20 @@
 
 
 #include "Form.hpp"
+#include "Bureaucrat.hpp"
 
 Form::Form(): _name("Default"), _sign(false), _SignedGrade(100), _ExecGrade(50)
 {
 	std::cout<<"Default Constr Called !"<<std::endl;
 }
 
-Form::Form(const std::string name, bool sign,const int signedGrade, const int ExecGrade): _name(name), _sign(sign), _SignedGrade(signedGrade), _ExecGrade(ExecGrade)
+Form::Form(const std::string name, const int signedGrade, const int ExecGrade): _name(name), _sign(false), _SignedGrade(signedGrade), _ExecGrade(ExecGrade)
 {
 	std::cout<<"Personal Constr Called"<<std::endl;
-	if (sign == true)
-		throw SignedMustBeFalse();
 	if (signedGrade > 150 || ExecGrade > 150)
-		throw GradeTooLowExcepetion();
+		throw GradeTooLowException();
 	if (signedGrade < 1 || ExecGrade < 1)
-		throw GradeTooHighExcepetion();
+		throw GradeTooHighException();
 }
 
 Form::~Form()
@@ -42,16 +41,15 @@ Form &Form::operator=(const Form &rhs)
 	return *this;
 }
 
-Form::Form(const Form &cpy) : _name(cpy.GetName()), _SignedGrade(GetSignedGrade()),_ExecGrade(cpy.GetExec())
+Form::Form(const Form &cpy) : _name(cpy.GetName()), _sign(cpy.GetSign()), _SignedGrade(cpy.GetSignedGrade()),_ExecGrade(cpy.GetExec())
 {
-	this->_sign = cpy.GetSign();
 }
 
 std::string Form::GetName(void)const{
 	return this->_name;
 }
 
-int Form::GetSign(void)const
+bool Form::GetSign(void)const
 {
 	return this->_sign;
 }
@@ -66,35 +64,31 @@ int Form::GetExec(void)const
 }
 
 
-void Form::beSigned(Bureaucrate &a)
+void Form::beSigned(Bureaucrat &a)
 {
 	if (this->GetSignedGrade() < a.GetGrade())
-		throw GradeTooLowExcepetion();
+		throw GradeTooLowException();
 	this->_sign = true;
 }
 
 
-const char *Form::GradeTooHighExcepetion::what(void) const throw()
+const char *Form::GradeTooHighException::what(void) const throw()
 {
     return "Grade is too High for this Form";
 }
 
-const char *Form::GradeTooLowExcepetion::what(void) const throw()
+const char *Form::GradeTooLowException::what(void) const throw()
 {
     return "Grade is too Low for this Form";
 }
 
-const char *Form::SignedMustBeFalse::what(void)const throw()
-{
-	return "Signe Must be False during Construction";
-}
 
 std::ostream	&operator<<(std::ostream &o, const Form &a)
 {
 	o << "Form " << a.GetName() <<
 	":\n\tsign-grade:\t" << a.GetSignedGrade() <<
 	"\n\texec-grade:\t" << a.GetExec() <<
-	"\n\tis signed:\t" << a.GetSign() <<
+	"\n\tis signed:\t" << (a.GetSign() ? "true" : "false") <<
 	std::endl;
 	return (o);
 }

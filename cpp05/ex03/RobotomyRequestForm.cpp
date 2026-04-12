@@ -6,17 +6,17 @@
 /*   By: adamgallot <adamgallot@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/18 04:51:47 by adamgallot        #+#    #+#             */
-/*   Updated: 2026/03/18 04:51:49 by adamgallot       ###   ########.fr       */
+/*   Updated: 2026/03/18 05:10:55 by adamgallot       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RobotomyRequestForm.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm() : AForm("RobotomyRequestForm", false, 72, 45), _target("default_target")
+RobotomyRequestForm::RobotomyRequestForm() : AForm("RobotomyRequestForm", 72, 45), _target("default_target")
 {
 }
 
-RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm("RobotomyRequestForm", false, 72, 45), _target(target)
+RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm("RobotomyRequestForm", 72, 45), _target(target)
 {
 }
 
@@ -45,7 +45,7 @@ void RobotomyRequestForm::execute(Bureaucrat const & executor) const
 	if (executor.GetGrade() > this->GetExec())
 		throw AForm::GradeTooLowException();
 
-	std::cout << "* drrrrrrzt drrrrrrzt ... drilling noises *" << std::endl;
+	std::cout << " drilling noises *" << std::endl;
 	if (rand() % 2 == 0)
 		std::cout << this->_target << " has been robotomized successfully!" << std::endl;
 	else

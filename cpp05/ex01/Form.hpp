@@ -16,9 +16,8 @@
 #include <iostream>
 #include <string>
 #include <exception>
-#include "Bureaucrat.hpp"
 
-class Bureaucrate;
+class Bureaucrat;
 
 class Form
 {
@@ -28,38 +27,30 @@ class Form
 		const int _SignedGrade;
 		const int _ExecGrade;
 	public:
-	Form(void);
-	Form(const std::string name, bool signe,const int signeGrade,const int ExecGrade);
-	Form(const Form &cpy);
-	Form &operator=(const Form &rhs);
-	std::string GetName(void)const;
-	int GetSign()const;
-	int GetSignedGrade()const;
-	int GetExec()const;
-	void beSigned(Bureaucrate &a);
-	~Form();
+		Form(void);
+		Form(const std::string name, const int signeGrade, const int ExecGrade);
+		Form(const Form &cpy);
+		Form &operator=(const Form &rhs);
+		~Form();
 
+		std::string GetName(void)const;
+		bool GetSign()const;
+		int GetSignedGrade()const;
+		int GetExec()const;
+		void beSigned(Bureaucrat &a);
 
-	class GradeTooHighExcepetion : public std::exception
-{
-	public:
-		virtual const char *what() const throw();
-};
-class GradeTooLowExcepetion : public std::exception
-{
-	public:
-		virtual const char *what() const throw();
-};
-
-class SignedMustBeFalse : public std::exception
-{
-	public:
-		virtual const char *what() const throw();
-};
-
+		class GradeTooHighException : public std::exception
+		{
+			public:
+				virtual const char *what() const throw();
+		};
+		class GradeTooLowException : public std::exception
+		{
+			public:
+				virtual const char *what() const throw();
+		};
 };
 
 std::ostream	&operator<<(std::ostream &o, const Form &a);
-
 
 #endif
