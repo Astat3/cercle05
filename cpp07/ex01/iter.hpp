@@ -17,11 +17,11 @@
 #include <cstddef>
 #include <iostream>
 
-template<typename T, typename foo> void iter(T *adress, const std::size_t length, foo fool)
+template<typename T, typename F> void iter(T *array, const std::size_t length, F func)
 {
     size_t i = 0;
     while (i < length) {
-        fool(adress[i]);
+        func(array[i]);
         i++;
     }
 } 

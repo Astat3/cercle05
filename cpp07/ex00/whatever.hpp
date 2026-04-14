@@ -21,8 +21,8 @@ template <typename S> void swap(S& x, S& y) {
 	y = tmp;
 }
 
-template <typename M> M min(const M& x, const M& y) { return (x < y) ? x : y; }
+template <typename T> const T& min(const T& x, const T& y) { return (x < y) ? x : y; }
 
-template <typename T> T max(const T& x, const T& y) { return (x > y) ? x : y; }
+template <typename T> const T& max(const T& x, const T& y) { return (x > y) ? x : y; }
 
 #endif

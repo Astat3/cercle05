@@ -6,7 +6,7 @@
 /*   By: adamgallot <adamgallot@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/04 16:19:16 by adamgallot        #+#    #+#             */
-/*   Updated: 2026/04/04 16:19:17 by adamgallot       ###   ########.fr       */
+/*   Updated: 2026/04/14 21:19:56 by adamgallot       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 int main(int, char**)
 {
     Array<int> numbers(MAX_VAL);
-    int* mirror = new int[MAX_VAL];
+    int* mirror = new int[MAX_VAL]; // Control Array
     srand(time(NULL));
     for (int i = 0; i < MAX_VAL; i++)
     {
@@ -27,8 +27,7 @@ int main(int, char**)
         numbers[i] = value;
         mirror[i] = value;
     }
-    //SCOPE
-    {
+    {// testing deep copy
         Array<int> tmp = numbers;
         Array<int> test(tmp);
     }
@@ -58,10 +57,11 @@ int main(int, char**)
         std::cerr << e.what() << '\n';
     }
 
+    //not a const
     for (int i = 0; i < MAX_VAL; i++)
     {
         numbers[i] = rand();
     }
-    delete [] mirror;//
+    delete [] mirror;
     return 0;
 }
