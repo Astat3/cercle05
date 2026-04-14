@@ -6,7 +6,7 @@
 /*   By: adamgallot <adamgallot@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 15:32:06 by adamgallot        #+#    #+#             */
-/*   Updated: 2026/04/01 19:26:26 by adamgallot       ###   ########.fr       */
+/*   Updated: 2026/04/14 17:07:25 by adamgallot       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ ScalarConverter::ScalarConverter(const ScalarConverter& src) {
 }
 
 ScalarConverter& ScalarConverter::operator=(const ScalarConverter& rhs) {
-	// useless here because no data attributes or allocation memory
 	if (this != &rhs)
 	{
 		(void)rhs;
@@ -30,16 +29,17 @@ ScalarConverter& ScalarConverter::operator=(const ScalarConverter& rhs) {
 ScalarConverter::~ScalarConverter(void) {}
 
 void ScalarConverter::convert(const std::string& literal) {
-	// Case of Char
 	if (literal.length() == 1 && !std::isdigit(literal[0])) {
 		char c = literal[0];
-		std::cout << "char: '" << c << "'\n"
-				<< "int: " << static_cast<int>(c) << "\n"
+		if (std::isprint(c))
+			std::cout << "char: '" << c << "'\n";
+		else
+			std::cout << "char: Non displayable\n";
+		std::cout << "int: " << static_cast<int>(c) << "\n"
 				<< "float: " << static_cast<float>(c) << ".0f\n"
 				<< "double: " << static_cast<double>(c) << ".0\n";
 		return;
 	}
-	// Special Case
 	if (literal == "nan" || literal == "nanf" || literal == "+inf" || literal == "+inff" || literal == "-inf" || literal == "-inff") {
 		std::cout << "char: impossible\n"
 				<< "int: impossible\n";
@@ -58,8 +58,8 @@ void ScalarConverter::convert(const std::string& literal) {
 
 	char* endptr = NULL;
 	double val = std::strtod(literal.c_str(), &endptr);
+    //convert c style to C++ -> much safer
 	std::string remain(endptr);
-
 	if (!remain.empty() && remain != "f") {
 		std::cout << "char: impossible\n"
 				<< "int: impossible\n"
@@ -67,7 +67,7 @@ void ScalarConverter::convert(const std::string& literal) {
 				<< "double: impossible\n";
 		return;
 	}
-	// case of ""
+    //empty string
 	if (endptr == literal.c_str()) {
 		std::cout << "char: impossible\n"
 				<< "int: impossible\n"

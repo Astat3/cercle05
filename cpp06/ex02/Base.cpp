@@ -6,7 +6,7 @@
 /*   By: adamgallot <adamgallot@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 17:32:37 by adamgallot        #+#    #+#             */
-/*   Updated: 2026/04/02 17:43:15 by adamgallot       ###   ########.fr       */
+/*   Updated: 2026/04/14 17:32:47 by adamgallot       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 Base::~Base(void) {}
 
 Base* generate(void) {
-    // Generate a random number between 0 and 2
     int random = std::rand() % 3;
     
     if (random == 0)
@@ -32,8 +31,11 @@ Base* generate(void) {
         return new C();
 }
 
+
+// we use dynamic cast because we don't the type yet
+
 void identify(Base* p) {
-    if (dynamic_cast<A*>(p) != NULL) // doing a downcasting -> from parents to child
+    if (dynamic_cast<A*>(p) != NULL)
         std::cout << "A\n";
     else if (dynamic_cast<B*>(p) != NULL)
         std::cout << "B\n";
@@ -48,7 +50,7 @@ void identify(Base& p) {
     reference can't be null -> if it does -> execption bad_cast
     */
     try {
-        (void)dynamic_cast<A&>(p); //flag oblige
+        (void)dynamic_cast<A&>(p);
         std::cout << "A\n";
         return;
     } catch (std::exception& e) {}

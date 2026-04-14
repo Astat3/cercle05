@@ -6,7 +6,7 @@
 /*   By: adamgallot <adamgallot@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 15:32:06 by adamgallot        #+#    #+#             */
-/*   Updated: 2026/04/01 18:58:35 by adamgallot       ###   ########.fr       */
+/*   Updated: 2026/04/12 17:06:53 by adamgallot       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 #include <iomanip>
 
 
-// Non instanciable because everything is private
 class ScalarConverter
 {
     private:
