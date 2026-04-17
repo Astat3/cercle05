@@ -1,10 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   MutantStack.hpp                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adamgallot <adamgallot@student.42.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/17 16:33:52 by adamgallot        #+#    #+#             */
+/*   Updated: 2026/04/17 16:33:53 by adamgallot       ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+
+
 #ifndef MUTANTSTACK_HPP
 #define MUTANTSTACK_HPP
 
 #include <stack>
 #include <deque>
 
-template <typename T, typename Container = std::deque<T> >
+template <typename T, typename Container = std::deque<T>>
 class MutantStack : public std::stack<T, Container> {
 public:
     MutantStack() : std::stack<T, Container>() {}
