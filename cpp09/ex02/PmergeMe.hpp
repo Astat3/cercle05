@@ -93,7 +93,7 @@ namespace PmergeMe {
             for (size_t i = maxIdx; i > insertedCount; --i) {
                 int valueToInsert = pend[i - 1];
                 typename Container::iterator pos = std::lower_bound(mainChain.begin(), mainChain.end(), valueToInsert);
-                mainChain.insert(pos, valueToInsert);
+                mainChain.insert(pos, valueToInsert);   
             }
             insertedCount = maxIdx;
             jacobIdx++;
